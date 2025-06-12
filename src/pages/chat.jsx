@@ -33,7 +33,7 @@ export default function Chat() {
     <div style={{ padding: "2rem" }}>
       <h1>🗨️ Chat</h1>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      {secret ? <p><strong>Hemlig data:</strong> {secret}</p> : <p>Laddar...</p>}
+      {secret ? <p><strong>Hemlig data här:</strong> {secret}</p> : <p>Laddar...</p>}
     </div>
   );
 }
