@@ -1,19 +1,53 @@
 import axios from "axios";
 
+// Bas-URL för API:t
 const BASE_URL = "https://chatify-api.up.railway.app";
 
+// Skicka alltid med cookies (viktigt för CSRF)
 axios.defaults.withCredentials = true;
 
+// Skapa en axios-instans med bas-URL
+export const api = axios.create({
+  baseURL: BASE_URL,
+});
+
+// Lägg till interceptors för att automatiskt sätta Authorization-header med token
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+// Hämta CSRF-token innan skyddade POST-anrop
 export const getCsrfToken = async () => {
-  await axios.patch(`${BASE_URL}/csrf`);
+  try {
+    return await api.patch("/csrf");
+  } catch (error) {
+    console.error("Failed to get CSRF token", error);
+    throw error;
+  }
 };
 
-export const register = async (data) => {
+// Registrera ny användare
+export const register = async (formData) => {
   await getCsrfToken();
-  return axios.post(`${BASE_URL}/auth/register`, data);
+  return api.post("/auth/register", formData);
 };
 
-export const login = async (data) => {
+// Logga in användare och få JWT-token
+export const login = async (formData) => {
   await getCsrfToken();
-  return axios.post(`${BASE_URL}/auth/token`, data);
+  return api.post("/auth/token", formData);
 };
+
+// Hämta skyddad hemlig data (exempel)
+export const fetchSecret = async () => {
+  return api.get("/secret");
+};
+
+export default api;
