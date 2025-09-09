@@ -12,7 +12,7 @@ export default function SideNav() {
 
   return (
     <div style={{ position: "fixed", left: 0, top: 0, height: "100%", width: "100px", backgroundColor: "#ddd", padding: "1rem" }}>
-      <button onClick={handleLogout}>Logga ut</button>
+      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 }

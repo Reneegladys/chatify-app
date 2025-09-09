@@ -20,8 +20,8 @@ export default function Chat({ user: propUser }) {
   useEffect(() => {
     if (user) {
       setMessages([
-        { id: 1, userId: user.id, text: "Hej från mig!" },
-        { id: 2, userId: 999, text: "Hej från en annan person!" },
+        { id: 1, userId: user.id, text: "Hi from me!" },
+        { id: 2, userId: 999, text: "Hi, from another person!" },
       ]);
     }
   }, [user]);
@@ -61,20 +61,20 @@ export default function Chat({ user: propUser }) {
 
   const generateBotReply = (userText) => {
     const lower = userText.toLowerCase();
-    if (lower.includes("hej")) return "Hej! Hur mår du?";
-    if (lower.includes("hur")) return "Jag mår bra, tack!";
-    if (lower.includes("vad")) return "Jag är en bot och kan svara på enkla frågor.";
-    return "Hmm, intressant...";
+    if (lower.includes("hej")) return "Hi! How are you?";
+    if (lower.includes("hur")) return "Im fine, thanks!";
+    if (lower.includes("vad")) return "Im a bot, I can answer simple questions.";
+    return "Hmm, interesting...";
   };
 
-  if (!user) return <p>Du är inte inloggad.</p>;
+  if (!user) return <p>You are not logged in.</p>;
 
   return (
     <div style={{ display: "flex" }}>
       <SideNav /> {/* Add this line */}
       <div className="chat-container" style={{ marginLeft: "100px", width: "100%" }}>
         <div className="chat-card">
-          <h2 className="chat-title">Välkommen, {user.username}</h2>
+          <h2 className="chat-title">Welcome, {user.username}</h2>
           <div className="chat-avatar">
             <img src={user.avatar || "https://i.pravatar.cc/200"} alt="Avatar" />
           </div>
@@ -85,7 +85,7 @@ export default function Chat({ user: propUser }) {
                 <p>{m.text}</p>
                 {m.userId === user.id && (
                   <button className="chat-delete" onClick={() => handleDelete(m.id)}>
-                    Radera
+                    Delete
                   </button>
                 )}
               </div>
@@ -99,7 +99,7 @@ export default function Chat({ user: propUser }) {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Skriv meddelande..."
             />
-            <button onClick={handleSend}>Skicka</button>
+            <button onClick={handleSend}>Send</button>
           </div>
         </div>
       </div>

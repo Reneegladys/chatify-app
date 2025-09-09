@@ -66,11 +66,11 @@ export default function Register() {
 
   return (
     <div className="register-container">
-      <h2 className="register-title">Registrera dig</h2>
+      <h2 className="register-title">Register</h2>
       <form onSubmit={handleSubmit} className="register-form" noValidate>
         <input
           name="username"
-          placeholder="Användarnamn"
+          placeholder="Username"
           value={form.username}
           onChange={handleChange}
           required
@@ -80,7 +80,7 @@ export default function Register() {
         <input
           name="email"
           type="email"
-          placeholder="E-post"
+          placeholder="E-mail"
           value={form.email}
           onChange={handleChange}
           required
@@ -90,7 +90,7 @@ export default function Register() {
         <input
           name="password"
           type="password"
-          placeholder="Lösenord"
+          placeholder="Password"
           value={form.password}
           onChange={handleChange}
           required
@@ -100,14 +100,14 @@ export default function Register() {
         />
         <input
           name="avatar"
-          placeholder="Avatar URL (valfritt)"
+          placeholder="Avatar URL (optional)"
           value={form.avatar}
           onChange={handleChange}
           autoComplete="off"
           className="register-input"
         />
         <button type="submit" disabled={loading} className="register-button">
-          {loading ? "Registrerar..." : "Registrera"}
+          {loading ? "Registering..." : "Register"}
         </button>
       </form>
 

@@ -66,11 +66,11 @@ export default function Login() {
 
   return (
     <div className="login-container">
-      <h2 className="login-title">Logga in</h2>
+      <h2 className="login-title">Login</h2>
       <form onSubmit={handleSubmit} className="login-form">
         <input
           name="username"
-          placeholder="Användarnamn"
+          placeholder="Username"
           value={form.username}
           onChange={handleChange}
           required
@@ -80,14 +80,14 @@ export default function Login() {
         <input
           name="password"
           type="password"
-          placeholder="Lösenord"
+          placeholder="Password"
           value={form.password}
           onChange={handleChange}
           required
           autoComplete="current-password"
           className="login-input"
         />
-        <button type="submit" className="login-button">Logga in</button>
+        <button type="submit" className="login-button">Login</button>
       </form>
       {error && <p className="login-error">{error}</p>}
     </div>
