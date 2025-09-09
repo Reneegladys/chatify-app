@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Register.css"; // Import the CSS file
+import "./register.css"; // Import the CSS file
 
 const BASE_URL = "https://chatify-api.up.railway.app";
 
