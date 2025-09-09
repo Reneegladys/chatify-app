@@ -38,6 +38,7 @@ export default function Register() {
       if (!csrfRes.ok) throw new Error("Kunde inte hämta CSRF-token");
 
       const { csrfToken } = await csrfRes.json();
+      localStorage.setItem("csrfToken", csrfToken); // <-- Add this line
 
       // Skicka registerdata med CSRF-token
       const res = await fetch(`${BASE_URL}/auth/register`, {

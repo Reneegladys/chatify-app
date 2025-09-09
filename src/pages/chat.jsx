@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Chat.css";
+import SideNav from "../components/sidenav"; // Add this import
 
 export default function Chat({ user: propUser }) {
   const [user, setUser] = useState(propUser || null);
@@ -69,34 +70,37 @@ export default function Chat({ user: propUser }) {
   if (!user) return <p>Du är inte inloggad.</p>;
 
   return (
-    <div className="chat-container">
-      <div className="chat-card">
-        <h2 className="chat-title">Välkommen, {user.username}</h2>
-        <div className="chat-avatar">
-          <img src={user.avatar || "https://i.pravatar.cc/200"} alt="Avatar" />
-        </div>
+    <div style={{ display: "flex" }}>
+      <SideNav /> {/* Add this line */}
+      <div className="chat-container" style={{ marginLeft: "100px", width: "100%" }}>
+        <div className="chat-card">
+          <h2 className="chat-title">Välkommen, {user.username}</h2>
+          <div className="chat-avatar">
+            <img src={user.avatar || "https://i.pravatar.cc/200"} alt="Avatar" />
+          </div>
 
-        <div className="chat-messages">
-          {messages.map((m) => (
-            <div key={m.id} className={`chat-message ${m.userId === user.id ? "own" : "other"}`}>
-              <p>{m.text}</p>
-              {m.userId === user.id && (
-                <button className="chat-delete" onClick={() => handleDelete(m.id)}>
-                  Radera
-                </button>
-              )}
-            </div>
-          ))}
-          <div ref={messagesEndRef} />
-        </div>
+          <div className="chat-messages">
+            {messages.map((m) => (
+              <div key={m.id} className={`chat-message ${m.userId === user.id ? "own" : "other"}`}>
+                <p>{m.text}</p>
+                {m.userId === user.id && (
+                  <button className="chat-delete" onClick={() => handleDelete(m.id)}>
+                    Radera
+                  </button>
+                )}
+              </div>
+            ))}
+            <div ref={messagesEndRef} />
+          </div>
 
-        <div className="chat-input-container">
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Skriv meddelande..."
-          />
-          <button onClick={handleSend}>Skicka</button>
+          <div className="chat-input-container">
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Skriv meddelande..."
+            />
+            <button onClick={handleSend}>Skicka</button>
+          </div>
         </div>
       </div>
     </div>

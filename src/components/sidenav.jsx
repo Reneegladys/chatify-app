@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 export default function SideNav() {
   const navigate = useNavigate();
-
+7
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("csrfToken")
+    sessionStorage.removeItem("token")
     navigate("/home");
   };
 

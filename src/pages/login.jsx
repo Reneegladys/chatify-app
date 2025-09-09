@@ -27,6 +27,7 @@ export default function Login() {
       });
       if (!csrfRes.ok) throw new Error("Misslyckades hämta CSRF-token");
       const { csrfToken } = await csrfRes.json();
+      localStorage.setItem("csrfToken", csrfToken); // <-- Add this line
 
       // 2. Skicka login-data med CSRF-token i body
       const loginRes = await fetch(`${BASE_URL}/auth/token`, {
@@ -49,7 +50,8 @@ export default function Login() {
         const decoded = jwtDecode(data.token);
 
         // 4. Spara token + användardata i localStorage
-        localStorage.setItem("token", data.token);
+        
+        sessionStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(decoded));
 
         // 5. Navigera till skyddad sida
