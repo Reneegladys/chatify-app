@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import "./Chat.css";
+import "./chat.css";
 import SideNav from "../components/sidenav"; // Add this import
 
 export default function Chat({ user: propUser }) {
