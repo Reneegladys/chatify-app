@@ -1,4 +1,3 @@
-/* Center login form on the page */
 .login-container {
   display: flex;
   flex-direction: column;
@@ -9,13 +8,11 @@
   padding: 1rem;
 }
 
-/* Title */
 .login-title {
   margin-bottom: 1rem;
   text-align: center;
 }
 
-/* Form styling */
 .login-form {
   display: flex;
   flex-direction: column;
@@ -28,14 +25,12 @@
   gap: 1rem;
 }
 
-/* Inputs */
 .login-input {
   padding: 0.5rem;
   border-radius: 5px;
   border: 1px solid #ccc;
 }
 
-/* Button */
 .login-button {
   padding: 0.5rem;
   border-radius: 5px;
@@ -50,7 +45,6 @@
   background-color: #45a049;
 }
 
-/* Error message */
 .login-error {
   color: red;
   margin-top: 0.5rem;

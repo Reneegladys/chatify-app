@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./chat.css";
-import SideNav from "../components/sidenav"; // Add this import
+import SideNav from "../components/sidenav"; 
 
 export default function Chat({ user: propUser }) {
   const [user, setUser] = useState(propUser || null);
@@ -8,7 +8,6 @@ export default function Chat({ user: propUser }) {
   const [input, setInput] = useState("");
   const messagesEndRef = useRef(null);
 
-  // Load user from localStorage if not passed as prop
   useEffect(() => {
     if (!user) {
       const storedUser = localStorage.getItem("user");
@@ -16,7 +15,7 @@ export default function Chat({ user: propUser }) {
     }
   }, [user]);
 
-  // Initialize mock messages
+  // mock message
   useEffect(() => {
     if (user) {
       setMessages([
@@ -26,7 +25,6 @@ export default function Chat({ user: propUser }) {
     }
   }, [user]);
 
-  // Scroll to bottom on new messages
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -38,7 +36,6 @@ export default function Chat({ user: propUser }) {
     setMessages([...messages, userMessage]);
     setInput("");
 
-    // Fake bot response
     setTimeout(() => {
       const botResponse = {
         id: Date.now() + 1,
@@ -71,7 +68,7 @@ export default function Chat({ user: propUser }) {
 
   return (
     <div style={{ display: "flex" }}>
-      <SideNav /> {/* Add this line */}
+      <SideNav />
       <div className="chat-container" style={{ marginLeft: "100px", width: "100%" }}>
         <div className="chat-card">
           <h2 className="chat-title">Welcome, {user.username}</h2>

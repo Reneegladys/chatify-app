@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import "./login.css"; // Import the CSS file
+import "./login.css"; 
 
 const BASE_URL = "https://chatify-api.up.railway.app";
 
@@ -20,7 +20,7 @@ export default function Login() {
     setError(null);
 
     try {
-      // 1. Hämta CSRF-token
+      // Hämta CSRF-token
       const csrfRes = await fetch(`${BASE_URL}/csrf`, {
         method: "PATCH",
         credentials: "include",
@@ -29,7 +29,7 @@ export default function Login() {
       const { csrfToken } = await csrfRes.json();
       localStorage.setItem("csrfToken", csrfToken); // <-- Add this line
 
-      // 2. Skicka login-data med CSRF-token i body
+      //  Skicka login-data med CSRF-token i body
       const loginRes = await fetch(`${BASE_URL}/auth/token`, {
         method: "POST",
         credentials: "include",
@@ -46,15 +46,15 @@ export default function Login() {
       const data = await loginRes.json();
 
       if (loginRes.ok) {
-        // 3. Dekoda JWT-token
+        // Dekoda JWT-token
         const decoded = jwtDecode(data.token);
 
-        // 4. Spara token + användardata i localStorage
+        // Spara token + användardata i localStorage
         
         sessionStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(decoded));
 
-        // 5. Navigera till skyddad sida
+        // Navigera till skyddad sida
         navigate("/chat");
       } else {
         setError(data.error || "Felaktiga inloggningsuppgifter");

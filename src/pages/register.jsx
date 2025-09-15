@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./register.css"; // Import the CSS file
+import "./register.css";
 
 const BASE_URL = "https://chatify-api.up.railway.app";
 
@@ -38,7 +38,7 @@ export default function Register() {
       if (!csrfRes.ok) throw new Error("Kunde inte hämta CSRF-token");
 
       const { csrfToken } = await csrfRes.json();
-      localStorage.setItem("csrfToken", csrfToken); // <-- Add this line
+      localStorage.setItem("csrfToken", csrfToken); 
 
       // Skicka registerdata med CSRF-token
       const res = await fetch(`${BASE_URL}/auth/register`, {

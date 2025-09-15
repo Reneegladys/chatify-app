@@ -1,14 +1,12 @@
-/* Center container vertically and horizontally */
 .landing-container {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  height: 100vh; /* full viewport height */
-  background: linear-gradient(135deg, #ffffff, #ffffff); /* optional gradient background */
+  height: 100vh;
+  background: linear-gradient(135deg, #ffffff, #ffffff); 
 }
 
-/* Buttons */
 .landing-btn {
   padding: 0.8rem 2rem;
   font-size: 1.2rem;
@@ -18,7 +16,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   color: white;
-  background-color: #2ed049; /* button color */
+  background-color: #2ed049; 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
