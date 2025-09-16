@@ -11,7 +11,7 @@ export const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -23,12 +23,7 @@ api.interceptors.request.use(
 // Hämta CSRF-token innan skyddade POST-anrop
 export const getCsrfToken = async () => {
   try {
-    const res = await api.patch("/csrf");
-    const { csrfToken } = res.data;
-    if (csrfToken) {
-      localStorage.setItem("csrfToken", csrfToken);
-    }
-    return csrfToken;
+    return await api.patch("/csrf");
   } catch (error) {
     console.error("Failed to get CSRF token", error);
     throw error;
