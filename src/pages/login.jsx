@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from "jwt-decode"; // rätt import utan {}
 import "./login.css"; 
 
 const BASE_URL = "https://chatify-api.up.railway.app";
@@ -27,9 +27,9 @@ export default function Login() {
       });
       if (!csrfRes.ok) throw new Error("Misslyckades hämta CSRF-token");
       const { csrfToken } = await csrfRes.json();
-      localStorage.setItem("csrfToken", csrfToken); // <-- Add this line
+      localStorage.setItem("csrfToken", csrfToken);
 
-      //  Skicka login-data med CSRF-token i body
+      // Skicka login-data med CSRF-token i body
       const loginRes = await fetch(`${BASE_URL}/auth/token`, {
         method: "POST",
         credentials: "include",
@@ -49,12 +49,20 @@ export default function Login() {
         // Dekoda JWT-token
         const decoded = jwtDecode(data.token);
 
-        // Spara token + användardata i localStorage
-        
+        // Spara token i sessionStorage
         sessionStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(decoded));
 
-        // Navigera till skyddad sida
+        // Spara användardata i localStorage
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            id: decoded.id,
+            username: decoded.username || form.username, // Säkerställ att username finns
+            avatar: decoded.avatar || "https://i.pravatar.cc/200", // fallback-avatar
+          })
+        );
+
+        // Navigera till chat
         navigate("/chat");
       } else {
         setError(data.error || "Felaktiga inloggningsuppgifter");
