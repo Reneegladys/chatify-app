@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode"; // rätt import utan {}
+import { jwtDecode } from "jwt-decode"; 
 import "./login.css"; 
 
 const BASE_URL = "https://chatify-api.up.railway.app";
@@ -46,23 +46,19 @@ export default function Login() {
       const data = await loginRes.json();
 
       if (loginRes.ok) {
-        // Dekoda JWT-token
         const decoded = jwtDecode(data.token);
 
-        // Spara token i sessionStorage
         sessionStorage.setItem("token", data.token);
 
-        // Spara användardata i localStorage
         localStorage.setItem(
           "user",
           JSON.stringify({
             id: decoded.id,
-            username: decoded.username || form.username, // Säkerställ att username finns
-            avatar: decoded.avatar || "https://i.pravatar.cc/200", // fallback-avatar
+            username: decoded.username || form.username, 
+            avatar: decoded.avatar || "https://i.pravatar.cc/200", 
           })
         );
 
-        // Navigera till chat
         navigate("/chat");
       } else {
         setError(data.error || "Felaktiga inloggningsuppgifter");

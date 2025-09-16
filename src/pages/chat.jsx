@@ -8,19 +8,17 @@ export default function Chat({ user: propUser }) {
   const [input, setInput] = useState("");
   const messagesEndRef = useRef(null);
 
-  // Hämta användardata från localStorage om user inte finns
   useEffect(() => {
     if (!user) {
       const storedUser = localStorage.getItem("user");
       if (storedUser) {
         const parsedUser = JSON.parse(storedUser);
-        console.log("User från localStorage:", parsedUser); // För presentation
+        console.log("User från localStorage:", parsedUser); 
         setUser(parsedUser);
       }
     }
   }, [user]);
 
-  // Mock-meddelanden
   useEffect(() => {
     if (user && messages.length === 0) {
       setMessages([
@@ -30,12 +28,10 @@ export default function Chat({ user: propUser }) {
     }
   }, [user]);
 
-  // Scrolla ner automatiskt
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // Skicka meddelande
   const handleSend = () => {
     if (!input.trim() || !user) return;
 
@@ -43,7 +39,6 @@ export default function Chat({ user: propUser }) {
     setMessages([...messages, userMessage]);
     setInput("");
 
-    // Mock bot-svar
     setTimeout(() => {
       const botResponse = {
         id: Date.now() + 1,
@@ -66,7 +61,6 @@ export default function Chat({ user: propUser }) {
     return div.innerHTML;
   };
 
-  // Enkel botlogik
   const generateBotReply = (userText) => {
     const lower = userText.toLowerCase();
     if (lower.includes("hej")) return "Hi! How are you?";

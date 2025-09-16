@@ -29,7 +29,6 @@ export default function Register() {
     setLoading(true);
 
     try {
-      // Hämta CSRF-token
       const csrfRes = await fetch(`${BASE_URL}/csrf`, {
         method: "PATCH",
         credentials: "include",
