@@ -16,12 +16,12 @@
   cursor: pointer;
   transition: all 0.3s ease;
   color: white;
-  background-color: #2ed049; 
+  background-color: #61ab7b; 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .landing-btn:hover {
-  background-color: #3ce155;
+  background-color: #61ab7b;
   transform: translateY(-2px);
 }
 

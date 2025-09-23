@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode"; 
+import { jwtDecode } from "jwt-decode";
 import "./login.css"; 
 
 const BASE_URL = "https://chatify-api.up.railway.app";
@@ -20,7 +20,7 @@ export default function Login() {
     setError(null);
 
     try {
-      // Hämta CSRF-token
+     
       const csrfRes = await fetch(`${BASE_URL}/csrf`, {
         method: "PATCH",
         credentials: "include",
@@ -29,7 +29,7 @@ export default function Login() {
       const { csrfToken } = await csrfRes.json();
       localStorage.setItem("csrfToken", csrfToken);
 
-      // Skicka login-data med CSRF-token i body
+   
       const loginRes = await fetch(`${BASE_URL}/auth/token`, {
         method: "POST",
         credentials: "include",
@@ -48,6 +48,7 @@ export default function Login() {
       if (loginRes.ok) {
         const decoded = jwtDecode(data.token);
 
+        
         sessionStorage.setItem("token", data.token);
 
         localStorage.setItem(

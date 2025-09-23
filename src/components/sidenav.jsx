@@ -1,18 +1,22 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "./sidenav.css"; // import the CSS file
 
 export default function SideNav() {
   const navigate = useNavigate();
-7
+
   const handleLogout = () => {
-    localStorage.removeItem("csrfToken")
-    sessionStorage.removeItem("token")
+    localStorage.removeItem("csrfToken");
+    sessionStorage.removeItem("token");
     navigate("/home");
   };
 
   return (
-    <div style={{ position: "fixed", left: 0, top: 0, height: "100%", width: "100px", backgroundColor: "#ddd", padding: "1rem" }}>
-      <button onClick={handleLogout}>Logout</button>
+    <div className="sidenav">
+      <h2 className="sidenav-title">Menu</h2>
+      <button className="sidenav-logout" onClick={handleLogout}>
+        Logout
+      </button>
     </div>
   );
 }

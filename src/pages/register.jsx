@@ -39,7 +39,7 @@ export default function Register() {
       const { csrfToken } = await csrfRes.json();
       localStorage.setItem("csrfToken", csrfToken); 
 
-      // Skicka registerdata med CSRF-token
+      
       const res = await fetch(`${BASE_URL}/auth/register`, {
         method: "POST",
         credentials: "include",
@@ -49,7 +49,7 @@ export default function Register() {
 
       if (res.status === 201) {
         setSuccessMsg(
-          "Registrering lyckades! Du skickas vidare till inloggning..."
+          "Succeeded! redirecting to login..."
         );
         setTimeout(() => navigate("/login"), 2000);
       } else {

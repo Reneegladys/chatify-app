@@ -35,14 +35,14 @@
   padding: 0.5rem;
   border-radius: 5px;
   border: none;
-  background-color: #4caf50;
+  background-color: #61ab7b;
   color: #fff;
   cursor: pointer;
   font-weight: bold;
 }
 
 .login-button:hover {
-  background-color: #45a049;
+  background-color: #81de86;
 }
 
 .login-error {

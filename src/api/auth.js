@@ -1,6 +1,6 @@
 const BASE_URL = "https://chatify-api.up.railway.app";
 
-// Hämta JWT-token från sessionStorage
+
 const getToken = () => sessionStorage.getItem("token");
 
 const authHeaders = () => {
